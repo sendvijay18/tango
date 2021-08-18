@@ -1,0 +1,29 @@
+
+// Id:1 is admin user and Id:2 general user
+
+
+# Get http://localhost:3000/admin
+//out put: sign In with user credentials
+
+
+# Get http://localhost:3000/admin
+# Content-Type: application/json
+
+# {
+#     "userid" : 2
+# }
+//output: (id: 1) User Type not allowed
+//output: (id: 2) Admin
+
+//AES256
+//to get AES128 change line no. 48 in auth.js
+Get http://localhost:3000/encrypt
+Content-Type: application/json
+
+{
+    "mesg" : "testing12356516513"
+}
+
+
+
+

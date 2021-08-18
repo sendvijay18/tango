@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Form</title>
+</head>
+<body>
+    <form id="userForm" onclick="sendMessage()">
+        <h3>Task 1</h3>
+        <h4>To test the socket connection logs, ID's are hardcoded in userRoles.js </h4>
+        <h4>To run the Application run "npm install", "npm start" on project folder path</h4>
+        <h4>1 for  Admin</h4>
+        <h4>2 for  Non-Admin</h4>
+        <br />
+        <h3>Task 2</h3>
+        <h4>To test the middlewares to check the logged-in user(admin/general)</h4>
+        <h4>had return the test cases in "test.rest" which requires "Rest Client" extension in VS-Code</h4>
+        <br />
+        ID: <input type=text />
+        <br /><br />
+        <input type=submit value="submit" />
+    </form>
+    
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" 
+            integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" 
+            crossorigin="anonymous"></script>
+    <script>
+        const socket = io();
+        
+        socket.on('notifyAdmin', (resp) => {
+            console.log("new user notification")
+        });
+        
+        function sendMessage() {
+            // console.log(document.getElementById('formId').elements[0].value)
+            let userId = document.getElementById('userForm').elements[0].value
+            console.log("notify admin with user id:"+userId)
+            socket.emit("notifyAdmin", userId);
+        }
+      </script>
+</body>
+</html>
